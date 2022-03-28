@@ -81,3 +81,4 @@ module.exports = {
           ]
      }
 }
+console.log(isDev)
