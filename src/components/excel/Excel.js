@@ -1,17 +1,22 @@
+import {$node} from "@core/Dom"
+
 export class Excel {
     constructor(selector, options) {
-        this.$el = document.querySelector(selector)
+        this.element = document.querySelector(selector)
         this.components = options.components || []
     }
     getRoot() {
-        const $root = document.createElement("div")
+        const root = $node.create("div", "excel")
+
         this.components.forEach(Component => {
-            const component = new Component()
-            $root.insertAdjacentHTML("afterbegin", component.toHTML())
+            const element = $node.create("div", Component.className)
+            const component = new Component(element)
+            root.appendChild($node.addHtml(element, component.toHTML()))
         })
-        return $root
+
+        return root
     }
     render() {
-        this.$el.append(this.getRoot())
+        this.element.append(this.getRoot())
     }
 }
