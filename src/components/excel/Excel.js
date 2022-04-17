@@ -1,4 +1,4 @@
-import {$node} from "@core/Dom"
+import {domMan} from "@core/Dom"
 
 export class Excel {
     constructor(selector, options) {
@@ -6,15 +6,16 @@ export class Excel {
         this.components = options.components || []
     }
     getRoot() {
-        const root = $node.create("div", "excel")
+        const root = domMan.create("div", "excel")
 
         this.components.forEach(Component => {
-            const element = $node.create("div", Component.className)
+            const element = domMan.create("div", Component.className)
             const component = new Component(element)
-            root.appendChild($node.addHtml(element, component.toHTML()))
+            element.html(component.toHTML())
+            root.append(element)
         })
 
-        return root
+        return root.domNode
     }
     render() {
         this.element.append(this.getRoot())

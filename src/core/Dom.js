@@ -1,26 +1,37 @@
 class Dom {
    constructor(selector) {
-      this.element = typeof selector === "string"
-         ? document.querySelector(selector)
-         : selector
+      this.domNode = typeof selector === "string"
+          ? document.querySelector(selector)
+          : selector
+   }
+
+   html(html) {
+      if (typeof html === "string") {
+         this.domNode.innerHTML = html
+         return this
+      }
+      return this.domNode.outerHTML.trim()
+   }
+
+   clear() {
+      this.html("")
+      return this
+   }
+
+   append(element) {
+      this.domNode.appendChild(element.domNode)
+      return this
    }
 }
 
-export function $node(selector) {
+export function domMan(selector) {
    return new Dom(selector)
 }
 
-$node.create = (tagName, classes = "") => {
+domMan.create = (tagName, classes = "") => {
    const el = document.createElement(tagName)
    if (classes) {
       el.classList.add(classes)
    }
-   return el
-}
-
-$node.addHtml = (node, html = "") => {
-   if (html) {
-      node.innerHTML = html
-   }
-   return node
+   return domMan(el)
 }
