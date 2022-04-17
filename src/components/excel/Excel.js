@@ -2,10 +2,11 @@ import {$node} from "@core/Dom"
 
 export class Excel {
     constructor(selector, options) {
-        this.element = document.querySelector(selector)
+        this.entryPoint = document.querySelector(selector)
         this.components = options.components || []
     }
-    getRoot() {
+
+    getStructure() {
         const root = $node.create("div", "excel")
 
         this.components.forEach(Component => {
@@ -16,7 +17,8 @@ export class Excel {
 
         return root
     }
+
     render() {
-        this.element.append(this.getRoot())
+        this.entryPoint.append(this.getStructure())
     }
 }
