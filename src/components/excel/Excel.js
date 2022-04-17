@@ -2,10 +2,11 @@ import {domMan} from "@core/Dom"
 
 export class Excel {
     constructor(selector, options) {
-        this.element = document.querySelector(selector)
+        this.entryPoint = document.querySelector(selector)
         this.components = options.components || []
     }
-    getRoot() {
+
+    getStructure() {
         const root = domMan.create("div", "excel")
 
         this.components.forEach(Component => {
@@ -15,9 +16,10 @@ export class Excel {
             root.append(element)
         })
 
-        return root.domNode
+        return root
     }
+
     render() {
-        this.element.append(this.getRoot())
+        this.entryPoint.append(this.getStructure())
     }
 }
