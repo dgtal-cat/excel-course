@@ -5,4 +5,12 @@ export class DomListener {
       }
       this.node = node
    }
+
+   initDomListeners() {
+
+   }
+
+   removeDomListeners() {
+
+   }
 }

@@ -19,7 +19,15 @@ class Dom {
    }
 
    append(element) {
-      this.domNode.appendChild(element.domNode)
+      if (element instanceof Dom) {
+         element = element.domNode
+      }
+
+      if (Element.prototype.append) {
+         this.domNode.append(element)
+      } else {
+         this.domNode.appendChild(element)
+      }
       return this
    }
 }

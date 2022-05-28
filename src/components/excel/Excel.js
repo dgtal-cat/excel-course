@@ -2,7 +2,7 @@ import {domMan} from "@core/Dom"
 
 export class Excel {
     constructor(selector, options) {
-        this.entryPoint = document.querySelector(selector)
+        this.entryPoint = domMan(selector)
         this.components = options.components || []
     }
 

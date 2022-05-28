@@ -11,4 +11,8 @@ export class Formula extends ExcelComponent {
     toHTML() {
         return this.formulaTemplate
     }
+
+    init() {
+
+    }
 }
